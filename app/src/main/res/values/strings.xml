@@ -1,3 +1,18 @@
 <resources>
-    <string name="app_name">MobileDevelopmentAssigment02</string>
+    <string name="app_name">Blood Pressure Readings</string>
+    <array name="familyMember">
+        <item>father@home.com</item>
+        <item>mother@home.com</item>
+        <item>grandma@home.com</item>
+        <item>grandpa@home.com</item>
+    </array>
+    <string name="select_title">Select a Family Member</string>
+    <string name="systolic_prompt">Enter a Systolic Reading</string>
+    <string name="my_systolic">My Systolic Reading</string>
+    <string name="diastolic_prompt">Enter a Diastolic Reading</string>
+    <string name="my_diastolic">My Diastolic Reading</string>
+    <string name="addButt">Add</string>
+    <string name="warning_title">Warning</string>
+    <string name="warning">This person is in the Hypertensive Crisis Range, immediate action must be taken.</string>
+    <string name="back_butt">Back</string>
 </resources>
