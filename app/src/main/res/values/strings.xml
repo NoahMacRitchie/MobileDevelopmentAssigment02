@@ -15,4 +15,6 @@
     <string name="warning_title">Warning</string>
     <string name="warning">This person is in the Hypertensive Crisis Range, immediate action must be taken.</string>
     <string name="back_butt">Back</string>
+    <string name="update">Update</string>
+    <string name="btnDelete">Delete</string>
 </resources>
