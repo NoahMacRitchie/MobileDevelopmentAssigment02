@@ -4,6 +4,8 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Spinner;
 
@@ -23,6 +25,8 @@ public class RetrieveReadings extends AppCompatActivity {
     Spinner mySpinner;
     DatabaseReference databaseReadings;
     String member;
+    String sys;
+    String dias;
 
 
     @Override
@@ -35,6 +39,20 @@ public class RetrieveReadings extends AppCompatActivity {
         readingList = new ArrayList<Reading>();
         member = mySpinner.getSelectedItem().toString().trim();
         databaseReadings = FirebaseDatabase.getInstance().getReference("familymembers");
+        mySpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
+                onStart();
+                member = mySpinner.getSelectedItem().toString().trim();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parentView) {
+                // your code here
+            }
+
+        });
+
     }
 
     @Override

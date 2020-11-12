@@ -43,8 +43,8 @@ public class ReadingListAdapter extends ArrayAdapter<Reading> {
 
         Reading reading = readingList.get(position);
         tvName.setText(reading.getFamilyMember());
-        tvSys.setText(reading.getSystolicNum());
-        tvDis.setText(reading.getDiastolicNum());
+        tvSys.setText(String.valueOf(reading.getSystolicNum()));
+        tvDis.setText(String.valueOf(reading.getDiastolicNum()));
 //        time.setText(reading.getDiastolicNum());
 
         return listViewItem;

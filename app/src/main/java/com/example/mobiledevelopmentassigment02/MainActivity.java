@@ -18,4 +18,9 @@ public class MainActivity extends AppCompatActivity {
         Intent i = new Intent(this, AddActivity.class);
         startActivity(i);
     }
+
+    public void viewReadings(View v){
+        Intent i = new Intent(this, RetrieveReadings.class);
+        startActivity(i);
+    }
 }
