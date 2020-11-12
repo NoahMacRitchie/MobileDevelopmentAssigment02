@@ -22,6 +22,7 @@ public class RetrieveReadings extends AppCompatActivity {
     List<Reading> readingList;
     Spinner mySpinner;
     DatabaseReference databaseReadings;
+    String member;
 
 
     @Override
@@ -32,8 +33,8 @@ public class RetrieveReadings extends AppCompatActivity {
         lvReadings = findViewById(R.id.lvReadings);
         mySpinner= findViewById(R.id.spinner);
         readingList = new ArrayList<Reading>();
-        String member = mySpinner.getSelectedItem().toString().trim();
-        databaseReadings = FirebaseDatabase.getInstance().getReference("students");
+        member = mySpinner.getSelectedItem().toString().trim();
+        databaseReadings = FirebaseDatabase.getInstance().getReference("familymembers");
     }
 
     @Override
@@ -45,7 +46,9 @@ public class RetrieveReadings extends AppCompatActivity {
                 readingList.clear();
                 for (DataSnapshot studentSnapshot : dataSnapshot.getChildren()) {
                     Reading reading = studentSnapshot.getValue(Reading.class);
-                    readingList.add(reading);
+                    if(reading.getFamilyMember().equals(member)) {
+                        readingList.add(reading);
+                    }
                 }
 
                 ReadingListAdapter adapter = new ReadingListAdapter(RetrieveReadings.this, readingList);
