@@ -4,9 +4,11 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -19,6 +21,7 @@ import android.widget.Toast;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -49,6 +52,8 @@ public class RetrieveReadings extends AppCompatActivity {
         readingList = new ArrayList<Reading>();
         member = mySpinner.getSelectedItem().toString().trim();
         databaseReadings = FirebaseDatabase.getInstance().getReference("familymembers");
+
+        bottomNavFunction();
         mySpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
@@ -202,6 +207,33 @@ public class RetrieveReadings extends AppCompatActivity {
                 Toast.makeText(RetrieveReadings.this,
                         "Something went wrong.\n" + e.toString(),
                         Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    public void bottomNavFunction(){
+        BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigationl);
+        bottomNavigationView.setSelectedItemId(R.id.viewReading);
+
+        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener(){
+
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                switch(item.getItemId()){
+                    case R.id.add:
+                        startActivity(new Intent(getApplicationContext(), AddActivity.class));
+                        overridePendingTransition(0,0);
+                        return true;
+                    case R.id.viewReading:
+                        return true ;
+//                    case R.id.report:
+//                        startActivity(new Intent(getApplicationContext(), .class));
+//                        overridePendingTransition(0,0);
+//                        return true;
+                    default:
+                        return false;
+                }
+
             }
         });
     }

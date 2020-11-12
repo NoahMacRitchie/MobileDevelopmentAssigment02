@@ -4,10 +4,12 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -19,6 +21,7 @@ import android.widget.Toast;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -40,6 +43,7 @@ public class AddActivity extends AppCompatActivity {
         sys = findViewById(R.id.editTextTextPersonName);
         dia = findViewById(R.id.editTextTextPersonName2);
         addButton = findViewById(R.id.button2);
+        bottomNavFunction();
         TextView.OnEditorActionListener listener = new TextView.OnEditorActionListener(){
             @Override
             public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
@@ -117,6 +121,33 @@ public class AddActivity extends AppCompatActivity {
                 Toast.makeText(AddActivity.this,
                         "something went wrong.\n" + e.toString(),
                         Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    public void bottomNavFunction(){
+        BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigationl);
+        bottomNavigationView.setSelectedItemId(R.id.add);
+
+        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener(){
+
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                switch(item.getItemId()){
+                    case R.id.add:
+                        return true;
+                    case R.id.viewReading:
+                        startActivity(new Intent(getApplicationContext(), RetrieveReadings.class));
+                        overridePendingTransition(0,0);
+                        return true ;
+//                    case R.id.report:
+//                        startActivity(new Intent(getApplicationContext(), .class));
+//                        overridePendingTransition(0,0);
+//                        return true;
+                    default:
+                        return false;
+                }
+
             }
         });
     }
