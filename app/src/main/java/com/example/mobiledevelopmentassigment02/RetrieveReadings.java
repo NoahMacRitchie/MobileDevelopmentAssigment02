@@ -28,7 +28,9 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.text.DateFormatSymbols;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 public class RetrieveReadings extends AppCompatActivity {
@@ -112,7 +114,45 @@ public class RetrieveReadings extends AppCompatActivity {
                                int diastolicNum, String familyMember) {
         DatabaseReference dbRef = databaseReadings.child(id);
 
-        Reading reading = new Reading(id,systolicNum,diastolicNum,familyMember);
+        Calendar cal = Calendar.getInstance();
+        String month = "";
+        DateFormatSymbols dfs =  new DateFormatSymbols();
+        String[] months = dfs.getMonths();
+        int number = cal.get(Calendar.MONTH);
+        if(number >= 0 && number <= 11){
+            month = months[number];
+        }
+        String date = month + " " + cal.get(Calendar.DAY_OF_MONTH) + ", " + cal.get(Calendar.YEAR);
+        String time = String.format("%2d", cal.get(Calendar.HOUR)) + ":" + String.format("%2d", cal.get(Calendar.MINUTE)) + " ";
+        if(cal.get(Calendar.AM_PM) != 0){
+            time += "PM";
+        } else {
+            time += "AM";
+        }
+        String condition;
+
+        if(systolicNum < 120 && diastolicNum < 80){
+            condition = "Normal";
+        } else if((systolicNum <= 129 && systolicNum >= 120)
+                && (diastolicNum < 80)){
+            condition = "Elevated";
+        } else if((systolicNum <= 139 && systolicNum >= 130)){
+            condition = "High Blood Pressure (Stage 1)";
+        } else if((diastolicNum <= 89 && diastolicNum >= 80)){
+            condition = "High Blood Pressure (Stage 1)";
+        } else if ((systolicNum >= 140 && systolicNum <= 180)){
+            condition = "High Blood Pressure (Stage 2)";
+        } else if (diastolicNum >= 90 && diastolicNum <= 120){
+            condition = "High Blood Pressure (Stage 2)";
+        } else if (systolicNum > 180 || diastolicNum > 120){
+            condition = "Hypertensive Crisis";
+        } else if (systolicNum > 180 && diastolicNum > 120){
+            condition = "Hypertensive Crisis";
+        }else {
+            condition = "Unknown";
+        }
+
+        Reading reading = new Reading(id,systolicNum,diastolicNum,familyMember, date, time, condition);
 
         Task setValueTask = dbRef.setValue(reading);
 

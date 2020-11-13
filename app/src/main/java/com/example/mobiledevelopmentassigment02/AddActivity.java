@@ -123,7 +123,7 @@ public class AddActivity extends AppCompatActivity {
         } else {
             time += "AM";
         }
-        String condition;
+        String condition = "";
 
         if(systolic < 120 && diastolic < 80){
             condition = "Normal";
@@ -154,7 +154,7 @@ public class AddActivity extends AppCompatActivity {
             @Override
             public void onSuccess(Object o) {
                 Toast.makeText(AddActivity.this,"Reading added.",Toast.LENGTH_LONG).show();
-                finish();
+                //finish();
             }
         });
 

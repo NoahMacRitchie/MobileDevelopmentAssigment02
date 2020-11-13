@@ -39,13 +39,19 @@ public class ReadingListAdapter extends ArrayAdapter<Reading> {
         TextView tvName = listViewItem.findViewById(R.id.memeber);
         TextView tvSys = listViewItem.findViewById(R.id.text_sys);
         TextView tvDis = listViewItem.findViewById(R.id.text_dias);
-//        TextView time = listViewItem.findViewById(R.id.time);
+        TextView time = listViewItem.findViewById(R.id.time);
+        TextView condition = listViewItem.findViewById(R.id.con);
 
         Reading reading = readingList.get(position);
         tvName.setText(reading.getFamilyMember());
-        tvSys.setText(String.valueOf(reading.getSystolicNum()));
-        tvDis.setText(String.valueOf(reading.getDiastolicNum()));
-//        time.setText(reading.getDiastolicNum());
+        String sys = context.getString(R.string.systolic_reading) + String.valueOf(reading.getSystolicNum());
+        tvSys.setText(sys);
+        String dia = context.getString(R.string.diastolic_reading) + String.valueOf(reading.getDiastolicNum());
+        tvDis.setText(dia);
+        String dateOfReading = context.getString(R.string.date) + reading.getCurrentDate();
+        time.setText(dateOfReading);
+        String cond = context.getString(R.string.condition) + reading.getCondition();
+        condition.setText(cond);
 
         return listViewItem;
     }
