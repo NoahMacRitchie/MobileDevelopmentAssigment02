@@ -49,25 +49,19 @@ public class AddActivity extends AppCompatActivity {
         dia = findViewById(R.id.editTextTextPersonName2);
         addButton = findViewById(R.id.button2);
         bottomNavFunction();
-        TextView.OnEditorActionListener listener = new TextView.OnEditorActionListener(){
+        Button.OnClickListener listener2 = new Button.OnClickListener(){
             @Override
-            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+            public void onClick(View v) {
                 int systolic = Integer.parseInt(sys.getText().toString());
                 int diastolic = Integer.parseInt(dia.getText().toString());
                 if(systolic > 180 || diastolic > 120){
                     showWarningDialog();
                 }
-                return false;
-            }
-        };
-        Button.OnClickListener listener2 = new Button.OnClickListener(){
-            @Override
-            public void onClick(View v) {
                 addReading();
             }
         };
-        dia.setOnEditorActionListener(listener);
-        sys.setOnEditorActionListener(listener);
+        //dia.setOnEditorActionListener(listener);
+        //sys.setOnEditorActionListener(listener);
         addButton.setOnClickListener(listener2);
     }
     private void showWarningDialog() {
