@@ -7,8 +7,12 @@
         <item>grandpa@home.com</item>
     </array>
     <string name="select_title">Select a Family Member</string>
+    <string name="date">Date: </string>
     <string name="systolic_prompt">Enter a Systolic Reading</string>
     <string name="my_systolic">My Systolic Reading</string>
+    <string name="systolic_reading">Systolic Reading: </string>
+    <string name="diastolic_reading">Diastolic Reading: </string>
+    <string name="condition">Condition: </string>
     <string name="diastolic_prompt">Enter a Diastolic Reading</string>
     <string name="my_diastolic">My Diastolic Reading</string>
     <string name="addButt">Add</string>
@@ -17,4 +21,5 @@
     <string name="back_butt">Back</string>
     <string name="update">Update</string>
     <string name="btnDelete">Delete</string>
+    <string name="systolic">\"Systolic \"</string>
 </resources>

@@ -65,7 +65,7 @@ public class Reading {
     public String getCondition() { return condition; }
 
     public void setCondition(String condition) {
-        this.currentTime = condition;
+        this.condition = condition;
     }
 
 }
