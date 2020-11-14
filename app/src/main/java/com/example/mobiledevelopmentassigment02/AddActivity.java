@@ -148,6 +148,8 @@ public class AddActivity extends AppCompatActivity {
             @Override
             public void onSuccess(Object o) {
                 Toast.makeText(AddActivity.this,"Reading added.",Toast.LENGTH_LONG).show();
+                sys.setText("");
+                dia.setText("");
                 //finish();
             }
         });
