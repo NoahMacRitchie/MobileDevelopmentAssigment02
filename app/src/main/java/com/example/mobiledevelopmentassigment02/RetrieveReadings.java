@@ -211,6 +211,12 @@ public class RetrieveReadings extends AppCompatActivity {
                     Toast.makeText(RetrieveReadings.this, "You must enter a diastolic value.", Toast.LENGTH_LONG).show();
                     return;
                 }
+                int systolic = Integer.parseInt(editSysReading.getText().toString());
+                int diastolic = Integer.parseInt(editDiasReading.getText().toString());
+                if(systolic > 180 || diastolic > 120){
+                    showWarningDialog();
+                }
+
                 updateStudent(readingId, sys_reading, dias_reading, name);
 
                 alertDialog.dismiss();
@@ -276,6 +282,28 @@ public class RetrieveReadings extends AppCompatActivity {
 
             }
         });
+    }
+
+    private void showWarningDialog() {
+        AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(this);
+
+        LayoutInflater inflater = getLayoutInflater();
+
+        final View dialogView = inflater.inflate(R.layout.warning_dialog, null);
+        dialogBuilder.setView(dialogView);
+
+        final Button btnUpdate = dialogView.findViewById(R.id.btnDismiss);
+
+        final AlertDialog alertDialog = dialogBuilder.create();
+        alertDialog.show();
+
+        btnUpdate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                alertDialog.dismiss();
+            }
+        });
+
     }
 
 
