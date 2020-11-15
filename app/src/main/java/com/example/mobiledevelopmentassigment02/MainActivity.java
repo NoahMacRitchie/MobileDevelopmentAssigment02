@@ -30,10 +30,9 @@ public class MainActivity extends AppCompatActivity {
         startActivity(i);
     }
 
+
     public void bottomNavFunction(){
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigationl);
-
-
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener(){
 
             @Override
@@ -47,10 +46,10 @@ public class MainActivity extends AppCompatActivity {
                         startActivity(new Intent(getApplicationContext(), RetrieveReadings.class));
                         overridePendingTransition(0,0);
                         return true ;
-//                    case R.id.report:
-//                        startActivity(new Intent(getApplicationContext(), .class));
-//                        overridePendingTransition(0,0);
-//                        return true;
+                    case R.id.report:
+                        startActivity(new Intent(getApplicationContext(), ReportActivity.class));
+                        overridePendingTransition(0,0);
+                        return true;
                     default:
                         return false;
                 }

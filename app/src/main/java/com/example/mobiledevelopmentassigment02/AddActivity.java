@@ -117,28 +117,7 @@ public class AddActivity extends AppCompatActivity {
         } else {
             time += "AM";
         }
-        String condition = "";
-
-        if(systolic < 120 && diastolic < 80){
-            condition = "Normal";
-        } else if((systolic <= 129 && systolic >= 120)
-                && (diastolic < 80)){
-            condition = "Elevated";
-        } else if((systolic <= 139 && systolic >= 130)){
-            condition = "High Blood Pressure (Stage 1)";
-        } else if((diastolic <= 89 && diastolic >= 80)){
-            condition = "High Blood Pressure (Stage 1)";
-        } else if ((systolic >= 140 && systolic <= 180)){
-            condition = "High Blood Pressure (Stage 2)";
-        } else if (diastolic >= 90 && diastolic <= 120){
-            condition = "High Blood Pressure (Stage 2)";
-        } else if (systolic > 180 || diastolic > 120){
-            condition = "Hypertensive Crisis";
-        } else if (systolic > 180 && diastolic > 120){
-            condition = "Hypertensive Crisis";
-        }else {
-            condition = "Unknown";
-        }
+        String condition = Reading.calcCondition(systolic, diastolic);
 
         Reading reading = new Reading(id, systolic, diastolic, familyMem, date, time, condition);
 
@@ -179,10 +158,10 @@ public class AddActivity extends AppCompatActivity {
                         startActivity(new Intent(getApplicationContext(), RetrieveReadings.class));
                         overridePendingTransition(0,0);
                         return true ;
-//                    case R.id.report:
-//                        startActivity(new Intent(getApplicationContext(), .class));
-//                        overridePendingTransition(0,0);
-//                        return true;
+                    case R.id.report:
+                        startActivity(new Intent(getApplicationContext(), ReportActivity.class));
+                        overridePendingTransition(0,0);
+                        return true;
                     default:
                         return false;
                 }
