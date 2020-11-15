@@ -23,4 +23,5 @@
     <string name="btnDelete">Delete</string>
     <string name="our_names">Animesh Kaushal, Noah MacRitchie, Amber Ma</string>
     <string name="systolic">\"Systolic \"</string>
+    <string name="noReadingsFound">"No readings found for this family member this month"</string>
 </resources>

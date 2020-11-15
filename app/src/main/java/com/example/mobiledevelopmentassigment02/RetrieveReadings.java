@@ -55,7 +55,6 @@ public class RetrieveReadings extends AppCompatActivity {
         member = mySpinner.getSelectedItem().toString().trim();
         databaseReadings = FirebaseDatabase.getInstance().getReference("familymembers");
 
-        //bottomNavFunction();
         mySpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
@@ -272,10 +271,10 @@ public class RetrieveReadings extends AppCompatActivity {
                         return true;
                     case R.id.viewReading:
                         return true ;
-//                    case R.id.report:
-//                        startActivity(new Intent(getApplicationContext(), .class));
-//                        overridePendingTransition(0,0);
-//                        return true;
+                    case R.id.report:
+                        startActivity(new Intent(getApplicationContext(), ReportActivity.class));
+                        overridePendingTransition(0,0);
+                        return true;
                     default:
                         return false;
                 }
