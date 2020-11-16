@@ -52,12 +52,22 @@ public class AddActivity extends AppCompatActivity {
         Button.OnClickListener listener2 = new Button.OnClickListener(){
             @Override
             public void onClick(View v) {
-                int systolic = Integer.parseInt(sys.getText().toString());
-                int diastolic = Integer.parseInt(dia.getText().toString());
-                if(systolic > 180 || diastolic > 120){
-                    showWarningDialog();
+                if (TextUtils.isEmpty(sys.getText().toString().trim())) {
+                    sysErr();
                 }
-                addReading();
+
+                if (TextUtils.isEmpty(dia.getText().toString().trim())) {
+                    diaErr();
+                }
+
+                if(!TextUtils.isEmpty(sys.getText().toString().trim()) && !TextUtils.isEmpty(dia.getText().toString().trim())){
+                    int systolic = Integer.parseInt(sys.getText().toString());
+                    int diastolic = Integer.parseInt(dia.getText().toString());
+                    if(systolic > 180 || diastolic > 120){
+                        showWarningDialog();
+                    }
+                    addReading();
+                }
             }
         };
         //dia.setOnEditorActionListener(listener);
@@ -86,20 +96,18 @@ public class AddActivity extends AppCompatActivity {
 
     }
 
+    private void sysErr(){
+        Toast.makeText(this, "You must enter a systolic value.", Toast.LENGTH_LONG).show();
+    }
+
+    private void diaErr(){
+        Toast.makeText(this, "You must enter a diastolic value.", Toast.LENGTH_LONG).show();
+    }
+
     private void addReading() {
         int systolic = Integer.parseInt(sys.getText().toString().trim());
         int diastolic = Integer.parseInt(dia.getText().toString().trim());
         String familyMem = mySpin.getSelectedItem().toString().trim();
-
-        if (TextUtils.isEmpty(sys.getText().toString().trim())) {
-            Toast.makeText(this, "You must enter a systolic value.", Toast.LENGTH_LONG).show();
-            return;
-        }
-
-        if (TextUtils.isEmpty(dia.getText().toString().trim())) {
-            Toast.makeText(this, "You must enter a diastolic value.", Toast.LENGTH_LONG).show();
-            return;
-        }
 
         String id = databaseReadings.push().getKey();
         Calendar cal = Calendar.getInstance();
