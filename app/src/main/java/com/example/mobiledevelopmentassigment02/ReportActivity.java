@@ -78,6 +78,7 @@ public class ReportActivity extends AppCompatActivity {
     }
     public void bottomNavFunction(){
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigationl);
+        bottomNavigationView.setSelectedItemId(R.id.report);
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener(){
 
             @Override
