@@ -3,4 +3,4 @@ Animesh Kaushal - A00913301 annimesh7@gmail.com
 Noah MacRitchie -
 
 
-To update or delete a reading in View Readings activity, long press on th reading that you would liuke to update.
+To update or delete a reading in View Readings activity, long press on th reading that you would like to update.
