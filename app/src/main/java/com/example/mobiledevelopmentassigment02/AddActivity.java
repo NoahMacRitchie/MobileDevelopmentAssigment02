@@ -24,6 +24,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.jaredrummler.materialspinner.MaterialSpinner;
 
 import java.text.DateFormat;
 import java.text.DateFormatSymbols;
@@ -32,7 +33,8 @@ import java.util.Date;
 
 public class AddActivity extends AppCompatActivity {
 
-    Spinner mySpin;
+
+    MaterialSpinner mySpin;
     EditText sys;
     EditText dia;
     Button addButton;
@@ -44,7 +46,11 @@ public class AddActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add);
         databaseReadings = FirebaseDatabase.getInstance().getReference("familymembers");
+
         mySpin = findViewById(R.id.spinner);
+
+        String familyMembers[] = getResources().getStringArray(R.array.familyMember);
+        mySpin.setItems(familyMembers);
         sys = findViewById(R.id.editTextTextPersonName);
         dia = findViewById(R.id.editTextTextPersonName2);
         addButton = findViewById(R.id.button2);
@@ -107,8 +113,8 @@ public class AddActivity extends AppCompatActivity {
     private void addReading() {
         int systolic = Integer.parseInt(sys.getText().toString().trim());
         int diastolic = Integer.parseInt(dia.getText().toString().trim());
-        String familyMem = mySpin.getSelectedItem().toString().trim();
-
+        String familyMembers[] = getResources().getStringArray(R.array.familyMember);
+        String familyMem = familyMembers[mySpin.getSelectedIndex()].trim();
         String id = databaseReadings.push().getKey();
         Calendar cal = Calendar.getInstance();
         String month = "";

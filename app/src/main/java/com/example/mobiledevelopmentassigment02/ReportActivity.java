@@ -18,6 +18,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.jaredrummler.materialspinner.MaterialSpinner;
 
 import java.text.DateFormatSymbols;
 import java.util.ArrayList;
@@ -25,10 +26,11 @@ import java.util.Calendar;
 import java.util.List;
 
 public class ReportActivity extends AppCompatActivity {
-    Spinner mySpinner;
+    MaterialSpinner mySpin;
     DatabaseReference databaseReadings;
     List<Reading> readingList;
     String member;
+    String[] familyMembers;
     TextView tvAvgSystolicNum;
     TextView tvAvgDiastolicNum;
     TextView tvAvgCondition;
@@ -39,7 +41,10 @@ public class ReportActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_report);
         readingList = new ArrayList<Reading>();
-        mySpinner= findViewById(R.id.spinner);
+        mySpin= findViewById(R.id.spinner);
+        familyMembers = getResources().getStringArray(R.array.familyMember);
+        mySpin.setItems(familyMembers);
+        member = familyMembers[mySpin.getSelectedIndex()].trim();
         tvAvgSystolicNum = findViewById(R.id.avgSystolicNum);
         tvAvgDiastolicNum = findViewById(R.id.avgDiastolicNum);
         tvAvgCondition = findViewById(R.id.avgCondition);
@@ -47,15 +52,11 @@ public class ReportActivity extends AppCompatActivity {
 
         databaseReadings = FirebaseDatabase.getInstance().getReference("familymembers");
         setReportHeading();
-        mySpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        mySpin.setOnItemSelectedListener(new MaterialSpinner.OnItemSelectedListener<String>() {
             @Override
-            public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
+            public void onItemSelected(MaterialSpinner view, int position, long id, String item) {
+                member = familyMembers[mySpin.getSelectedIndex()].trim();
                 onStart();
-                member = mySpinner.getSelectedItem().toString().trim();
-            }
-            @Override
-            public void onNothingSelected(AdapterView<?> parentView) {
-                // your code here
             }
 
         });
@@ -72,7 +73,7 @@ public class ReportActivity extends AppCompatActivity {
             month = months[number];
         }
         int year = cal.get(Calendar.YEAR);
-        String heading = "Month-to-date average readings for " + month + " " + year;
+        String heading = member + "'s Month-to-date average\n" + month + ", " + year;
         tvHeading.setText(heading);
 
     }
@@ -120,8 +121,9 @@ public class ReportActivity extends AppCompatActivity {
             String avgCondition = "Average Condition: " + Reading.calcCondition(avgSystolicReadingValue, avgDiastolicReadingValue);
             tvAvgCondition.setText(avgCondition);
         } else {
-            tvAvgSystolicNum.setText(R.string.noReadingsFound);
+            tvAvgSystolicNum.setText(R.string.noReadingsFound + member);
         }
+        setReportHeading();
     }
     protected void onStart() {
         super.onStart();

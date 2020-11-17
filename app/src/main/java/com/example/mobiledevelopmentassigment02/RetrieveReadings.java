@@ -27,6 +27,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.jaredrummler.materialspinner.MaterialSpinner;
 
 import java.text.DateFormatSymbols;
 import java.util.ArrayList;
@@ -37,34 +38,31 @@ public class RetrieveReadings extends AppCompatActivity {
 
     ListView lvReadings;
     List<Reading> readingList;
-    Spinner mySpinner;
+    MaterialSpinner mySpin;
     DatabaseReference databaseReadings;
     String member;
     String sys;
     String dias;
+    String[] familyMembers;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_retrieve_readings);
-
         lvReadings = findViewById(R.id.lvReadings);
-        mySpinner= findViewById(R.id.spinner);
+        mySpin= findViewById(R.id.spinner);
+        familyMembers = getResources().getStringArray(R.array.familyMember);
+        mySpin.setItems(familyMembers);
         readingList = new ArrayList<Reading>();
-        member = mySpinner.getSelectedItem().toString().trim();
+        member = familyMembers[mySpin.getSelectedIndex()].trim();
         databaseReadings = FirebaseDatabase.getInstance().getReference("familymembers");
 
-        mySpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        mySpin.setOnItemSelectedListener(new MaterialSpinner.OnItemSelectedListener<String>() {
             @Override
-            public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
+            public void onItemSelected(MaterialSpinner view, int position, long id, String item) {
+                member = familyMembers[mySpin.getSelectedIndex()].trim();
                 onStart();
-                member = mySpinner.getSelectedItem().toString().trim();
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parentView) {
-                // your code here
             }
 
         });

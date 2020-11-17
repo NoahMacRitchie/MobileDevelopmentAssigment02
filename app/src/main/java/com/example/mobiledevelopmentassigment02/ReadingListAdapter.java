@@ -44,9 +44,9 @@ public class ReadingListAdapter extends ArrayAdapter<Reading> {
 
         Reading reading = readingList.get(position);
         tvName.setText(reading.getFamilyMember());
-        String sys = context.getString(R.string.systolic_reading) + String.valueOf(reading.getSystolicNum());
+        String sys = context.getString(R.string.systolic_reading) + " " + String.valueOf(reading.getSystolicNum());
         tvSys.setText(sys);
-        String dia = context.getString(R.string.diastolic_reading) + String.valueOf(reading.getDiastolicNum());
+        String dia = context.getString(R.string.diastolic_reading) + " " + String.valueOf(reading.getDiastolicNum());
         tvDis.setText(dia);
         String dateOfReading = context.getString(R.string.date) + reading.getCurrentDate();
         time.setText(dateOfReading);

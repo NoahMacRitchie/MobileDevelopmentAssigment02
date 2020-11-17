@@ -7,33 +7,45 @@
 
     <TextView
         android:id="@+id/memeber"
-        android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
+        android:textAppearance="@style/Base.TextAppearance.AppCompat.Body2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="TextView" />
-
+        />
+    <TextView
+        android:id="@+id/time"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAppearance="@style/Base.TextAppearance.AppCompat.Caption"
+        android:paddingStart="4dp"
+        android:paddingEnd="4dp"
+        />
     <TextView
         android:id="@+id/text_sys"
+        android:textAppearance="@style/Base.TextAppearance.AppCompat.Body1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="TextView" />
+        android:paddingStart="4dp"
+        android:paddingEnd="4dp"
+         />
 
     <TextView
         android:id="@+id/text_dias"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="TextView" />
+        android:textAppearance="@style/Base.TextAppearance.AppCompat.Body1"
+        android:paddingStart="4dp"
+        android:paddingEnd="4dp"
+         />
 
-    <TextView
-        android:id="@+id/time"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="TextView" />
+
 
     <TextView
         android:id="@+id/con"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="TextView" />
+        android:textAppearance="@style/Base.TextAppearance.AppCompat.Body1"
+        android:paddingStart="4dp"
+        android:paddingEnd="4dp"
+        />
 
 </LinearLayout>
