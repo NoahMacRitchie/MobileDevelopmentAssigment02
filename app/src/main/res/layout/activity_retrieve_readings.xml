@@ -18,8 +18,7 @@
             android:layout_height="wrap_content"
             android:text="@string/select_title"
             android:textAppearance="@style/Base.TextAppearance.AppCompat.Headline"
-            android:layout_margin="4dp"
-            android:outlineAmbientShadowColor="#111"/>
+            android:layout_margin="4dp" />
         <com.jaredrummler.materialspinner.MaterialSpinner
             android:id="@+id/spinner"
             android:layout_width="match_parent"
